@@ -74,9 +74,9 @@ async def predict(image_data: ImageData):
 
             area = (xmax - xmin) * (ymax - ymin)
 
-            if center_x < 150:
+            if center_x < 200:
                 side = 'left'
-            elif center_x >= 150 and center_x <= 450:
+            elif center_x >= 200 and center_x <= 400:
                 side = 'front'
             else:
                 side = 'right'
