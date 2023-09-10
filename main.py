@@ -86,7 +86,7 @@ async def predict(image_data: ImageData):
                 data = f'{name} in {side} of you'
             else:
                 data = f'{name} to your {side}'
-            if data not in formatted_outputs and area > 10000:
+            if data not in formatted_outputs and area > 8000:
                 formatted_outputs.append(data)
 
         return formatted_outputs
@@ -127,24 +127,24 @@ BlindSight AI''',
 @app.post("/currency")
 async def currency(imagedata: ImageData):
     final_output = []
-    curr = 0
+    curr = 'This note cannot be recognized. Please hold it correctly.'
     if imagedata.imagedata != "string":
         output = run2(base64_image=imagedata.imagedata)
         output = output.split(' ')
         for i in range(len(output) - 1):
             if output[i] == '0':
-                curr = 'Ten'
+                curr = 'This is a Ten Rupees note.'
             elif output[i] == '1':
-                curr = 'Twenty'
+                curr = 'This is a Twenty Rupees note.'
             elif output[i] == '2':
-                curr = 'Fifty'
+                curr = 'This is a Fifty Rupees note.'
             elif output[i] == '3':
-                curr = 'Hundred'
+                curr = 'This is a Hundred Rupees note.'
             elif output[i] == '4':
-                curr = 'Two Hundred'
+                curr = 'This is a Two Hundred Rupees note.'
             elif output[i] == '5':
-                curr = 'Five Hundred'
+                curr = 'This is a Five Hundred Rupees note.'
             elif output[i] == '6':
-                curr = 'Two Thousand'
-            final_output.append(f'This is a {curr} Rupees note.')
+                curr = 'This is a Two Thousand Rupees note.'
+            final_output.append(curr)
         return final_output
